@@ -23,3 +23,22 @@
 # Output
 # Output a single line with an integer indicating the number of different possible rankings. Print the answer
 # modulo 109 + 7.
+
+def contar_classificacoes(n, frutas):
+    count = 0
+    for i in range(n):
+        red, black = frutas[i]
+        total_points = red + black
+        count += 1
+    return total_points
+
+# Exemplo de uso
+n = int(input("Digite o número de netos participantes: "))
+
+frutas = []
+for i in range(n):
+    red, black = map(int, input("Digite a quantidade de frutas vermelhas e pretas para o neto {}: ".format(i+1)).split())
+    frutas.append((red, black))
+
+numero_classificacoes = contar_classificacoes(n, frutas)
+print("Número de classificações diferentes: {}".format(numero_classificacoes))
