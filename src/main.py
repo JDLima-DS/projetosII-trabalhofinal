@@ -1,4 +1,30 @@
+from ShiftAnd import ShiftAnd
+
 if __name__ == "__main__":
-    print("Olá Mundo!")
-    print("Façam parte do trabalho e se comuniquem no grupo, vagabundos!!!")
-    print("Né Nelson???")
+
+    with open("texto.txt", 'r') as file:
+
+        padrao = input("Padrão a ser buscado:")
+        texto = ""
+
+        line = file.readline()
+        while line:
+            texto += line
+            line = file.readline()
+
+        shift_and = ShiftAnd(padrao, texto)
+
+        print("O tipo de busca deve ser:\n"
+              "- Exata (Digite 1)\n"
+              "- Aproximada (Digite 2)\n")
+
+        tipo_de_busca = int(input("Resposta: "))
+
+        if tipo_de_busca == 1:
+            casamentos_exatos = shift_and.casamento_exato()
+            print("Casamentos exatos encontrados:", casamentos_exatos)
+        elif tipo_de_busca == 2:
+            casamentos_aproximados = shift_and.casamento_aproximado()
+            print("Casamentos aproximados encontrados:", casamentos_aproximados)
+        else:
+            raise Exception("A entrada dada pelo usuário não se encaixa nas entradas aceitas pelo sistema!")
