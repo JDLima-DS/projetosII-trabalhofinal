@@ -4,7 +4,7 @@ if __name__ == "__main__":
 
     with open("texto.txt", 'r') as file:
 
-        padrao = "Lorem"
+        padrao = input("Padrão a ser buscado:")
         texto = ""
 
         line = file.readline()
@@ -14,10 +14,17 @@ if __name__ == "__main__":
 
         shift_and = ShiftAnd(padrao, texto)
 
-        # Casamento exato
-        casamentos_exatos = shift_and.casamento_exato()
-        print("Casamentos exatos encontrados:", casamentos_exatos)
+        print("O tipo de busca deve ser:\n"
+              "- Exata (Digite 1)\n"
+              "- Aproximada (Digite 2)\n")
 
-        # Casamento aproximado
-        casamentos_aproximados = shift_and.casamento_aproximado()
-        print("Casamentos aproximados encontrados:", casamentos_aproximados)
+        tipo_de_busca = int(input("Resposta: "))
+
+        if tipo_de_busca == 1:
+            casamentos_exatos = shift_and.casamento_exato()
+            print("Casamentos exatos encontrados:", casamentos_exatos)
+        elif tipo_de_busca == 2:
+            casamentos_aproximados = shift_and.casamento_aproximado()
+            print("Casamentos aproximados encontrados:", casamentos_aproximados)
+        else:
+            raise Exception("A entrada dada pelo usuário não se encaixa nas entradas aceitas pelo sistema!")
