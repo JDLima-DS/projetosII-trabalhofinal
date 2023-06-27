@@ -1,5 +1,8 @@
+import time, statistics
+
+
 class ShiftAnd:
-    def __init__(self, padrao_nao_processado, texto):
+    def __init__(self, padrao_nao_processado: str, texto: str):
         self.mascara = self.aplica_mascara(padrao_nao_processado)
         self.texto = texto
 
@@ -12,7 +15,7 @@ class ShiftAnd:
 
         for i in range(len(self.texto) - padrao_len + 1):
             j = 0
-            while j < padrao_len and self.mascara[j] & (1 << ord(self.texto[i+j])):
+            while j < padrao_len and self.mascara[j] & (1 << ord(self.texto[i + j])):
                 j += 1
 
             if j == padrao_len:
@@ -31,7 +34,7 @@ class ShiftAnd:
             erros = 0
             j = 0
             while j < padrao_len and erros <= 1:
-                if not self.mascara[j] & (1 << ord(self.texto[i+j])):
+                if not self.mascara[j] & (1 << ord(self.texto[i + j])):
                     erros += 1
                 j += 1
 
@@ -52,3 +55,27 @@ class ShiftAnd:
             mascara[i] = 1 << ord(letra)
 
         return mascara
+
+    def test(self, tries: int) -> tuple[float, float]:
+
+        tempos = []
+        for i in range(tries):
+            tempo_inicial = time.time()
+            self.casamento_exato()
+            tempo_final = time.time()
+            delta = tempo_final - tempo_inicial
+            tempos.append(delta)
+
+        exact = statistics.mean(tempos)
+
+        tempos = []
+        for i in range(tries):
+            tempo_inicial = time.time()
+            self.casamento_aproximado()
+            tempo_final = time.time()
+            delta = tempo_final - tempo_inicial
+            tempos.append(delta)
+
+        approximate = statistics.mean(tempos)
+
+        return exact, approximate

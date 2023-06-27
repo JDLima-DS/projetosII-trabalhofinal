@@ -1,5 +1,8 @@
+import time, statistics
+
+
 class BoyerMooreHorspool:
-    def __init__(self, padrao):
+    def __init__(self, padrao: str):
         self.padrao = padrao
         self.tamanho_padrao = len(padrao)
         self.tabela_deslocamentos = self.preprocessar_padrao()
@@ -45,3 +48,16 @@ class BoyerMooreHorspool:
             i += deslocamento
 
         return matches
+
+    def test(self, text: str, tries: int) -> float:
+
+        tempos = []
+        for i in range(tries):
+            tempo_inicial = time.time()
+            self.buscar(text)
+            tempo_final = time.time()
+            delta = tempo_final - tempo_inicial
+            tempos.append(delta)
+
+        media = statistics.mean(tempos)
+        return media
