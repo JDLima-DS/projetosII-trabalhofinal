@@ -1,21 +1,21 @@
 class No:
-    def __init__(self, valor: str):
+    def __init__(self, valor: str) -> None:
         self.valor = str(valor)
         self.esquerda = None
         self.direita = None
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.valor.lower()
 
 
 class ABP:
-    def __init__(self):
+    def __init__(self) -> None:
         self.raiz = None
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.raiz
 
-    def inserir(self, valor):
+    def inserir(self, valor: str) -> None:
 
         if self.raiz is None:
             self.raiz = No(valor)
@@ -40,7 +40,7 @@ class ABP:
         elif valor == pai.valor:
             return
 
-    def pre_ordem(self, no_sendo_visitado=None) -> None:
+    def pre_ordem(self, no_sendo_visitado: No = None) -> None:
         if no_sendo_visitado is None:
             no_sendo_visitado = self.raiz
 
@@ -77,7 +77,7 @@ class ABP:
         print(no_sendo_visitado, end=" ")
         return
 
-    def procurar(self, valor: str):
+    def procurar(self, valor: str) -> bool:
         no_atual = self.raiz
 
         while no_atual:

@@ -9,19 +9,19 @@ TSA = ShiftAnd.ShiftAnd(pattern, text)
 TBMH = BoyerMooreHorspool.BoyerMooreHorspool(pattern)
 
 exato, aproximado = TSA.test(1000)
-tbm = TBMH.test(text, 1000)
+bmh = TBMH.test(text, 1000)
 
 resultados = {'exato': exato,
               'aproximado': aproximado,
-              'tbm': tbm}
+              'bmh': bmh}
 
 resultados_invertidos = {exato: 'exato',
                          aproximado: 'aproximado',
-                         tbm: 'tbm'}
+                         bmh: 'bmh'}
 
 print(f"Tempo ShiftAnd exato: {exato}")
 print(f"Tempo ShiftAnd aproximado: {aproximado}")
-print(f"Tempo TBM: {tbm}")
+print(f"Tempo BMH: {bmh}")
 
 quickest = (resultados_invertidos.get(min(resultados.values())), min(resultados.values()))
 slowest = (resultados_invertidos.get(max(resultados.values())), max(resultados.values()))
