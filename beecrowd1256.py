@@ -16,7 +16,7 @@ count = 0
 for caso in casos_de_teste:
     count += 1
     M, E = caso
-    
+
     # Cria a Tabela
     tabela = []
     for i in range(0, M):
@@ -30,10 +30,10 @@ for caso in casos_de_teste:
     for i in range(0, M):
         print(i, "->", end=" ")
         for j in tabela[i]:
-            if j == None:
+            if j is None:
                 print("\\")
                 continue
             print(j, "->", end=" ")
-    
+
     if count < N:
         print()
