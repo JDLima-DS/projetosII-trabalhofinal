@@ -1,78 +1,78 @@
 # Recebe a Quantidade de Casos de Teste
 C = int(input())
 
-# Lista que Armazena as Váriaveis de cada Caso de Teste
+# Lista que Armazena as Variaveis de cada Caso de Teste
 casos = []
 for i in range(C):
-    # Recebe a Quantidade de Elementos da Árvore
+    # Recebe a Quantidade de Elementos da Arvore
     N = int(input())
     # Recebe a Chave de cada Elemento
     K = list(map(int, input().split()))
     casos.append([i + 1, N, K])
 
 
-# Classe Nó
-class Node:
-    def __init__(self, value):
-        self.left = None
-        self.right = None
-        self.value = value
+# Classe No
+class No:
+    def __init__(self, valor):
+        self.esq = None
+        self.dir = None
+        self.valor = valor
 
 
-# Função Inserção de Nós na Árvore Binária de Busca
-def insert(root, value):
-    if root is None:
-        return Node(value)
-    if value < root.value:
-        root.left = insert(root.left, value)
+# Funcao Insercao de Nos na Arvore Binaria de Busca
+def inserir(raiz, valor):
+    if raiz is None:
+        return No(valor)
+    if valor < raiz.valor:
+        raiz.esq = inserir(raiz.esq, valor)
     else:
-        root.right = insert(root.right, value)
-    return root
+        raiz.dir = inserir(raiz.dir, valor)
+    return raiz
 
-# Execução do Algoritmo para os Casos de Teste
+# Execucao do Algoritmo para os Casos de Teste
 for caso in casos:
-    # Recuperação dos Valores de cada Variável
+    # Recuperacao dos Valores de cada Variavel
     count, N, K = caso
 
-    # Criação da Árvore Binária de Busca
-    tree = None
+    # Criacao da Arvore Binaria de Busca
+    arvore = None
     for i in K:
-        tree = insert(tree, i)
+        arvore = inserir(arvore, i)
 
-    # Impressão dos Percursos
+    # Impressao dos Percursos
     aux = []
     print("Case", str(count) + ":")
 
-    # Função Recursiva Pré-Ordem
-    def pre_order(node):
-        if node is not None:
-            aux.append(node.value)
-            pre_order(node.left)
-            pre_order(node.right)
+    # Funcao Recursiva Pre-Ordem
+    def pre_ordem(no):
+        if no is not None:
+            aux.append(no.valor)
+            pre_ordem(no.esq)
+            pre_ordem(no.dir)
         return aux
     print("Pre.:", end=" ")
-    print(str(pre_order(tree)).translate({ord(i): None for i in "[],"}))
+    print(str(pre_ordem(arvore)).translate({ord(i): None for i in "[],"}))
 
     aux.clear()
-    # Função Recursiva Em-Ordem
-    def in_order(node):
-        if node is not None:
-            in_order(node.left)
-            aux.append(node.value)
-            in_order(node.right)
+    # Funcao Recursiva Em-Ordem
+    def em_ordem(no):
+        if no is not None:
+            em_ordem(no.esq)
+            aux.append(no.valor)
+            em_ordem(no.dir)
         return aux
     print("In..:", end=" ")
-    print(str(in_order(tree)).translate({ord(i): None for i in "[],"}))
+    print(str(em_ordem(arvore)).translate({ord(i): None for i in "[],"}))
 
     aux.clear()
-    # Função Recursiva Pós-Ordem
-    def post_order(node):
-        if node is not None:
-            post_order(node.left)
-            post_order(node.right)
-            aux.append(node.value)
+    # Funcao Recursiva Pos-Ordem
+    def pos_ordem(no):
+        if no is not None:
+            pos_ordem(no.esq)
+            pos_ordem(no.dir)
+            aux.append(no.valor)
         return aux
     print("Post:", end=" ")
-    print(str(post_order(tree)).translate({ord(i): None for i in "[],"}))
+    print(str(pos_ordem(arvore)).translate({ord(i): None for i in "[],"}))
 
     print()
