@@ -3,7 +3,7 @@ from BoyerMooreHorspool import BoyerMooreHorspool
 
 if __name__ == "__main__":
 
-    with open("texto.txt", 'r') as file:
+    with open("src/texto.txt", 'r') as file:
 
         padrao = input("Padrão a ser buscado:")
         texto = ""
@@ -23,7 +23,7 @@ if __name__ == "__main__":
             casamentos = bmh.buscar(texto)
 
             if casamentos:
-              print("Casamentos exatos encontrados nas posições:", casamentos)
+              print("Casamentos exatos encontrados nas posições:", casamentos, "utilizando o BMH")
             else:
               print("Nenhum casamento encontrado.")
 
